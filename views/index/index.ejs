@@ -1,11 +1,241 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>puc-booking-platform</title>
-</head>
+<%- layout("/layouts/boilerplate") %>
+
 <body>
-    <h1> Welcome! </h1>
+    <div class="header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-7">
+                    <h1 class="display-4 text-white mb-4">Book Your PUC Checking Online in Minutes</h1>
+                    <p class="lead text-white mb-4">Get your Pollution Under Control (PUC) certificate hassle-free. Book an appointment and get certified.</p>
+                    <div>
+                        <a href="" class="btn btn-success">Sign In</a>
+                        <button type="button" class="btn btn-outline-light">Learn More</button>
+                    </div>  
+                </div>
+
+                <div class="col-md-5 text-center">
+                    <div class="text-white">
+                        <img class="mainimg" src="images/puc.jpg" alt="PUC Checking">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="text-center mb-4">
+            <h2 class="display-5">How It Works</h2>
+            <p class="lead text-muted">Get your PUC certificate in 3 simple steps</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-success text-white rounded-circle p-3 me-3">
+                                <h3 class="m-0">1</h3>
+                            </div>
+                            <h4>Book an Appointment</h4>
+                        </div>
+                        <p class="text-muted">Choose your preferred location that works for you.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-success text-white rounded-circle p-3 me-3" style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;">
+                                <h3 class="m-0">2</h3>
+                            </div>
+                            <h4>Wait for the Checker</h4>
+                        </div>
+                        <p class="text-muted"> Checker arrives at your destination with your vehicle and booking details at the scheduled time.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-success text-white rounded-circle p-3 me-3" style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;">
+                                <h3 class="m-0">3</h3>
+                            </div>
+                            <h4>Get Certified</h4>
+                        </div>
+                        <p class="text-muted">Complete the emission test and receive your PUC certificate immediately.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <h2 class="display-5">Why Choose EcoPUC</h2>
+            <p class="lead text-muted mb-5">We make getting your PUC certificate easy, fast, and hassle-free</p>
+            
+            <div class="row g-4 justify-content-center">
+
+            <div class="col-md-4 text-center">
+                    <div class="p-3">
+                        <div class="mb-3">
+                            <i class="fas fa-car fa-3x text-success"></i>
+                        </div>
+                        <h4>Easy Booking</h4>
+                        <p class="text-muted">Book your PUC check with just a few simple steps online.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 text-center">
+                    <div class="p-3">
+                        <div class="mb-3">
+                            <i class="far fa-clock fa-3x text-success"></i>
+                        </div>
+                        <h4>Save Time</h4>
+                        <p class="text-muted">Book your appointment online and avoid long waiting times at PUC centers.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 text-center">
+                    <div class="p-3">
+                        <div class="mb-3">
+                            <i class="fas fa-credit-card fa-3x text-success"></i>
+                        </div>
+                        <h4>Secure Payments</h4>
+                        <p class="text-muted">Pay online securely or to the checker based on your preference and convenience.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 justify-content-center mt-5">
+                <div class="col-md-4 text-center">
+                    <div class="p-3">
+                        <div class="mb-3">
+                            <i class="fas fa-bell fa-3x text-success"></i>
+                        </div>
+                        <h4>Reminder Service</h4>
+                        <p class="text-muted">Get timely notifications before your PUC certificate expires for renewal.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 text-center">
+                    <div class="p-3">
+                        <div class="mb-3">
+                            <i class="fas fa-star fa-3x text-success"></i>
+                        </div>
+                        <h4>Quality Service</h4>
+                        <p class="text-muted">Only authorized and verified testing centers with proper equipment and certifications.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 text-center">
+                    <div class="p-3">
+                        <div class="mb-3">
+                            <i class="fas fa-location-arrow fa-3x text-success"></i>
+                        </div>
+                        <h4>Live Tracking of Checker</h4>
+                        <p class="text-muted">Track the location of your PUC checker in real-time for added convenience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <h2 class="display-5">Frequently Asked Questions</h2>
+            <p class="lead text-muted">Find answers to the most common questions about PUC certificates</p>
+        </div>
+        
+        <div class="accordion" id="faqAccordion">
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                        What is a PUC certificate?
+                    </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        A PUC (Pollution Under Control) certificate is a mandatory document that certifies that your vehicle's emissions comply with pollution control standards. It is required for all vehicles in India as per the Motor Vehicle Act.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                        How often do I need to renew my PUC certificate?
+                    </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        For petrol vehicles, the PUC certificate is valid for 6 months. For diesel vehicles, it needs to be renewed every 3 months. It's recommended to get the test done before the current certificate expires.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                        What documents do I need to bring for a PUC test?
+                    </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        You need to keep ready:
+                        <ul>
+                            <li>Vehicle Registration Certificate (RC)</li>
+                            <li>Valid Insurance Document</li>
+                            <li>Previous PUC certificate (if any)</li>
+                            <li>Valid ID proof</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                        What is the penalty for not having a valid PUC certificate?
+                    </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Driving without a valid PUC certificate can result in a fine of Rs. 10,000 under the Motor Vehicles Act. Additionally, your vehicle registration could be suspended for non-compliance.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                        Can I book a PUC test for someone else's vehicle?
+                    </button>
+                </h2>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, you can book a PUC test for someone else's vehicle. However, you'll need to provide the vehicle's registration details and ensure that all necessary documents are available during the test.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background-color: #2F4F4F; padding: 60px 0;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h2 class="display-5 text-white mb-3">Ready to get your PUC certificate?<br>Book your appointment today.</h2>
+                    <p class="lead text-white-50">Avoid fines and keep your vehicle compliant with emission norms. Book your PUC test in just a few clicks.</p>
+                </div>
+                <div class="col-md-4 text-end">
+                        <a href="" class="btn btn-light btn-lg px-4">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
-</html>

@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
 const ejsMate = require("ejs-mate");
+const ExpressError = require("./utils/ExpressError.js");
 
 // Database Connection
 
@@ -23,9 +24,25 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({extended: true}));
 app.engine("ejs", ejsMate);
+app.use(express.static(path.join(__dirname, "public")));
+
+// Home Route
 
 app.get("/puc-booking-platform", async (req, res) => {
     res.render("index/index.ejs");
+});
+
+// 404 Route Handler
+
+app.use((req, res, next) => {
+    next(new ExpressError(404, "Page Not Found!"));
+});
+
+// Error Handling Middleware
+
+app.use((err, req, res, next) => {
+    const { statusCode = 500, message = "Something went wrong!" } = err;
+    res.status(statusCode).render("error.ejs", {message});
 });
 
 // Server Listening
