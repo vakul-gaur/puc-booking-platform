@@ -1,0 +1,95 @@
+<%- layout("/layouts/boilerplate") %>
+
+<body class="body-signup">
+    <div class="auth-wrapper" data-action="<%= typeof action !== 'undefined' ? action : 'login' %>">
+        <div class="background-shape"></div>
+        <div class="secondary-shape"></div>
+        <div class="credentials-panel signin">
+            <h2 class="slide-element">Login</h2>
+            <form action="/login" method="POST" novalidate class="needs-validation">
+                <div class="field-wrapper slide-element">
+                    <input type="text" name= "username" required>
+                    <label for="">Full Name</label>
+                    <i class="fa-solid fa-user"></i>
+                    <div class="invalid-feedback">
+                        Username is required.
+                    </div>
+                </div>
+
+                <div class="field-wrapper slide-element">
+                    <input type="password" name="password" required>
+                    <label for="">Password</label>
+                    <i class="fa-solid fa-lock"></i>
+                    <div class="invalid-feedback">
+                        Password is required.
+                    </div>
+                </div>
+
+                <div class="field-wrapper slide-element">
+                    <button class="submit-button" type="submit">Login</button>
+                </div>
+
+                <div class="switch-link slide-element">
+                    <p>Don't have an account? <br> <a href="#" class="register-trigger">Sign Up</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="welcome-section signin">
+            <h2 class="slide-element">WELCOME BACK!</h2>
+        </div>
+
+        <div class="credentials-panel signup">
+            <h2 class="slide-element">Register</h2>
+            <form action="/signup" method="POST" >
+                 <div class="field-wrapper slide-element">
+                    <input type="text" name= "username" required>
+                    <label for="">Full Name</label>
+                    <i class="fa-solid fa-user"></i>
+                    <div class="invalid-feedback">
+                        Username is required.
+                    </div>
+                </div>
+
+                <div class="field-wrapper slide-element">
+                    <input type="text" name="contact" required>
+                    <label for="">Contact</label>
+                    <i class="fa-solid fa-phone"></i>
+                    <div class="invalid-feedback">
+                        Contact Number is required.
+                    </div>
+                </div>
+
+                <div class="field-wrapper slide-element">
+                    <input type="email" name="email" required> 
+                    <label for="">Email</label>
+                    <i class="fa-solid fa-envelope"></i>
+                    <div class="invalid-feedback">
+                        Email is required.
+                    </div>
+                </div>
+
+                <div class="field-wrapper slide-element">
+                    <input type="password" name="password" required>
+                    <label for="">Password</label>
+                    <div class="invalid-feedback">
+                        Password is required.
+                    </div>
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+
+                <div class="field-wrapper slide-element">
+                    <button class="submit-button" type="submit">Register</button>
+                </div>
+
+                <div class="switch-link slide-element">
+                    <p>Already have an account? <br> <a href="#" class="login-trigger">Sign In</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="welcome-section signup">
+            <h2 class="slide-element">WELCOME!</h2>
+        </div>
+    </div>
+</body>
