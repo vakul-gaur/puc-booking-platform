@@ -46,8 +46,4 @@ router.get("/logout", (req, res, next) => {
     });
 });
 
-router.get("/dashboard", (req, res) => {
-    res.render("users/dashboard.ejs");
-});
-
 module.exports = router;

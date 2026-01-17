@@ -64,6 +64,7 @@ app.use((req, res, next) => {
 });
 
 const userRouter = require("./routes/user.js");
+const bookingRouter = require("./routes/booking.js");
 
 // Database Connection
 
@@ -89,6 +90,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // Routes
 
 app.use("/", userRouter);
+app.use("/", bookingRouter);
 
 // Home Route
 

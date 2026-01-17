@@ -57,7 +57,7 @@ body {
 }
 
 .bg-success {
-    width: 45px;
+    width: 100%;
     height: 45px;
     display: flex;
     align-items: center;
@@ -605,4 +605,73 @@ input[type="date"]::-webkit-inner-spin-button {
         .mainimg {
         display: none;
     }
+}
+
+/* USER DASHBOARD */
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.welcome {
+    background-color: #2F4F4F;
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+.card {
+    border: none;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+.card-header {
+    background-color: #198754;
+    color: white;
+    font-weight: 500;
+}
+.table {
+    margin-bottom: 0;
+}
+.table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+.booking-form {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+.form-control:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+}
+.price-display {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.map-container {
+    padding: 10px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,.1);
+    border: 1px solid #e5e5e5;
+    margin-top: 10px;
 }
