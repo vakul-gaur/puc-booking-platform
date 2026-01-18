@@ -95,7 +95,7 @@ app.use("/", bookingRouter);
 // Home Route
 
 app.get("/puc-booking-platform", async (req, res) => {
-    res.render("index/index.ejs");
+    res.render("index/index.ejs", { hideNavbar: false, hideFooter: false });
 });
 
 // 404 Route Handler
@@ -108,7 +108,7 @@ app.use((req, res, next) => {
 
 app.use((err, req, res, next) => {
     const { statusCode = 500, message = "Something went wrong!" } = err;
-    res.status(statusCode).render("error.ejs", {message});
+    res.status(statusCode).render("error.ejs", {message, hideNavbar: false, hideFooter: false });
 });
 
 // Server Listening

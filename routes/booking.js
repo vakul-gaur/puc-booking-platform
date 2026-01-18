@@ -10,7 +10,7 @@ const VEHICLE_PRICES = { 2: 100, 3: 150, 4: 200 };
 router.get("/dashboard", isLoggedIn, async (req, res) => {
     try {
         const bookings = await Booking.find({ user: req.user._id }).sort({ createdAt: -1 });
-        res.render("users/dashboard", { currUser: req.user, bookings });
+        res.render("users/dashboard", { currUser: req.user, bookings, hideNavbar: false, hideFooter: false });
     } catch (err) {
         console.error(err);
         req.flash("error", "Unable to load bookings");

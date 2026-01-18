@@ -7,7 +7,7 @@ const { saveRedirectUrl} = require("../middleware.js");
 
 
 router.get("/auth", (req, res) => {
-    res.render("users/auth.ejs");
+    res.render("users/auth.ejs", { action: "signup", hideNavbar: true, hideFooter: true });
 });
 
 router.post("/signup", async (req, res, next) => {
@@ -24,6 +24,10 @@ router.post("/signup", async (req, res, next) => {
         req.flash("error", e.message);
         res.redirect("/auth");
     }
+});
+
+router.get("/auth", (req, res) => {
+    res.render("users/auth.ejs", { action: "login", hideNavbar: true, hideFooter: true });
 });
 
 router.post("/login", saveRedirectUrl, passport.authenticate("user-local", {
