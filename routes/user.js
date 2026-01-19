@@ -3,14 +3,14 @@ const router = express.Router();
 const User = require("../models/user.js");
 const ExpressError = require("../utils/ExpressError.js");
 const passport = require("passport");
-const { saveRedirectUrl} = require("../middleware.js");
+const { saveRedirectUrl, validateUser } = require("../middleware.js");
 
 
 router.get("/auth", (req, res) => {
     res.render("users/auth.ejs", { action: "signup", hideNavbar: true, hideFooter: true });
 });
 
-router.post("/signup", async (req, res, next) => {
+router.post("/signup", validateUser, async (req, res, next) => {
     try {
         const { username, email, contact, password } = req.body;
         const user = new User({ username, email, contact });
