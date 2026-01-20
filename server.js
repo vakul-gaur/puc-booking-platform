@@ -1,3 +1,5 @@
+// Importing Required Modules
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -9,6 +11,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const flash = require("connect-flash");
 const User = require("./models/user.js");
+const Checker = require("./models/checker.js");
+const Admin = require("./models/admin.js");
 
 // Session Configuration
 
@@ -32,6 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use("user-local", new LocalStrategy(User.authenticate()));
+passport.use("checker-local", new LocalStrategy(Checker.authenticate()));
 
 passport.serializeUser((entity, done) => {
     done(null, {
@@ -65,6 +70,7 @@ app.use((req, res, next) => {
 
 const userRouter = require("./routes/user.js");
 const bookingRouter = require("./routes/booking.js");
+const checkerRouter = require("./routes/checker.js");
 
 // Database Connection
 
@@ -86,11 +92,14 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({extended: true}));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 
 // Routes
 
 app.use("/", userRouter);
 app.use("/", bookingRouter);
+app.use("/", checkerRouter);
 
 // Home Route
 

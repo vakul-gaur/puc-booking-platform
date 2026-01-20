@@ -1,0 +1,144 @@
+<%- layout("/layouts/boilerplate") %>
+
+<body class="body-signup">
+    <div class="auth-wrapper" data-action="<%= typeof action !== 'undefined' ? action : 'login' %>">
+        <div class="background-shape"></div>
+        <div class="secondary-shape"></div>
+        <div class="credentials-panel signin">
+            <h2 class="slide-element">Login</h2>
+            <form action="/checkerlogin" method="POST" novalidate class="needs-validation">
+                <div class="field-wrapper slide-element">
+                    <input type="text" name= "username" required>
+                    <label for="">Full Name</label>
+                    <i class="fa-solid fa-user"></i>
+                    <div class="invalid-feedback">
+                        Username is required.
+                    </div>
+                </div>
+
+                <div class="field-wrapper slide-element">
+                    <input type="password" name="password" required>
+                    <label for="">Password</label>
+                    <i class="fa-solid fa-lock"></i>
+                    <div class="invalid-feedback">
+                        Password is required.
+                    </div>
+                </div>
+
+                <div class="field-wrapper slide-element">
+                    <button class="submit-button" type="submit">Login</button>
+                </div>
+
+                <div class="switch-link slide-element">
+                    <p>Don't have an account? <br> <a href="#" class="register-trigger">Sign Up</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="welcome-section signin">
+            <h2 class="slide-element">WELCOME BACK!</h2>
+        </div>
+
+        <div class="credentials-panel signup">
+    <h2 class="slide-element">Register</h2>
+
+    <form action="/checkersignup" method="POST" enctype="multipart/form-data" novalidate class="needs-validation">
+
+    <div class="signup-grid">
+        <div class="field-wrapper slide-element">
+            <input type="text" name="username" required>
+            <label>Full Name</label>
+            <i class="fa-solid fa-user"></i>
+            <div class="invalid-feedback">
+                Username is required.
+            </div>
+        </div>
+
+        <div class="field-wrapper slide-element">
+            <input type="text" name="contact" required>
+            <label>Contact</label>
+            <i class="fa-solid fa-phone"></i>
+            <div class="invalid-feedback">
+                Contact Number is required.
+            </div>
+        </div>
+
+        <div class="field-wrapper slide-element">
+            <input type="email" name="email" required>
+            <label>Email</label>
+            <i class="fa-solid fa-envelope"></i>
+            <div class="invalid-feedback">
+                Email is required.
+            </div>
+        </div>
+
+        <div class="field-wrapper slide-element">
+            <input type="password" name="password" required>
+            <label>Password</label>
+            <i class="fa-solid fa-lock"></i>
+            <div class="invalid-feedback">
+                Password is required.
+            </div>
+        </div>
+
+        <div class="field-wrapper slide-element">
+            <input type="text" name="licenseNumber" required>
+            <label>License Number</label>
+            <i class="fa-solid fa-id-card"></i>
+            <div class="invalid-feedback">
+                License Number is required.
+            </div>
+        </div>
+
+        <div class="field-wrapper slide-element date-field">
+            <input type="date" name="licenseExpiry" required>
+            <label>License Expiry Date</label>
+            <i class="fa-solid fa-calendar"></i>
+            <div class="invalid-feedback">
+                License Expiry Date is required.
+            </div>
+        </div>
+
+        <div class="field-wrapper slide-element">
+            <select class="form-select" aria-label="Default select example" name="idProofType" required>
+                <option value="" selected disabled hidden>Select ID Proof</option>
+                <option value="AADHAAR">Aadhaar</option>
+                <option value="DL">Driving License</option>
+                <option value="PASSPORT">Passport</option>
+            </select>
+            <div class="invalid-feedback">
+                Please select a valid identity option.
+            </div>
+        </div>
+
+        <div class="field-wrapper slide-element">
+            <input type="file" name="documents" multiple required>
+            <div class="invalid-feedback">
+                Document is required.
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="field-wrapper slide-element">
+        <button class="submit-button" type="submit">
+            Apply for Checker Verification
+        </button>
+    </div>
+
+    <div class="switch-link slide-element">
+        <p>Already have an account?<br>
+            <a href="#" class="login-trigger">Sign In</a>
+        </p>
+    </div>
+</form>
+
+</div>
+
+
+        <div class="welcome-section signup">
+            <h2 class="slide-element">WELCOME!</h2>
+        </div>
+    </div>
+
+</body>
