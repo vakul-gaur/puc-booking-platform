@@ -28,6 +28,18 @@ module.exports.validateChecker = (req, res, next) => {
   next();
 };
 
+module.exports.isAdmin = (req, res, next) => {
+    if (
+        req.isAuthenticated() &&
+        req.user &&
+        req.user.constructor.modelName === "Admin"
+    ) {
+        return next();
+    }
+    req.flash("error", "Admin access required");
+    res.redirect("/admin/adminlogin");
+};
+
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
         req.flash(

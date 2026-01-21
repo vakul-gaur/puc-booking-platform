@@ -1,0 +1,38 @@
+<%- layout("/layouts/boilerplate") %>
+
+<body class="body-signup">
+    <div class="auth-wrapper">
+        <div class="background-shape"></div>
+        <div class="secondary-shape"></div>
+        <div class="credentials-panel signin">
+            <h2 class="slide-element">Login</h2>
+            <form action="/adminlogin" method="POST" novalidate class="needs-validation">
+                <div class="field-wrapper slide-element">
+                    <input type="text" name= "username" required>
+                    <label for="">Username</label>
+                    <i class="fa-solid fa-user"></i>
+                    <div class="invalid-feedback">
+                        Username is required.
+                    </div>
+                </div>
+
+                <div class="field-wrapper slide-element">
+                    <input type="password" name="password" required>
+                    <label for="">Password</label>
+                    <i class="fa-solid fa-lock"></i>
+                    <div class="invalid-feedback">
+                        Password is required.
+                    </div>
+                </div>
+
+                <div class="field-wrapper slide-element">
+                    <button class="submit-button" type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="welcome-section signin">
+            <h2 class="slide-element">WELCOME BACK ADMIN :&#41;</h2>
+        </div>
+
+</body>

@@ -37,6 +37,7 @@ app.use(passport.session());
 
 passport.use("user-local", new LocalStrategy(User.authenticate()));
 passport.use("checker-local", new LocalStrategy(Checker.authenticate()));
+passport.use("admin-local", new LocalStrategy(Admin.authenticate()));
 
 passport.serializeUser((entity, done) => {
     done(null, {
@@ -71,6 +72,7 @@ app.use((req, res, next) => {
 const userRouter = require("./routes/user.js");
 const bookingRouter = require("./routes/booking.js");
 const checkerRouter = require("./routes/checker.js");
+const adminRouter = require("./routes/admin.js");
 
 // Database Connection
 
@@ -100,6 +102,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/", userRouter);
 app.use("/", bookingRouter);
 app.use("/", checkerRouter);
+app.use("/", adminRouter);
 
 // Home Route
 

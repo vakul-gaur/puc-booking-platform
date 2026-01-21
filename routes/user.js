@@ -5,7 +5,6 @@ const ExpressError = require("../utils/ExpressError.js");
 const passport = require("passport");
 const { saveRedirectUrl, validateUser } = require("../middleware.js");
 
-
 router.get("/auth", (req, res) => {
     res.render("users/auth.ejs", { action: "signup", hideNavbar: true, hideFooter: true });
 });
