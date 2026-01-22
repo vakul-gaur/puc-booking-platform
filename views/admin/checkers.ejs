@@ -1,0 +1,141 @@
+<%- layout("/layouts/boilerplate") %>
+
+<body class="bg-light">
+
+    <div class="container py-4">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h3 class="fw-bold mb-1">Pending Checker Approvals</h3>
+                <p class="text-muted mb-0">
+                    Review and approve checker registration requests
+                </p>
+            </div>
+        </div>
+
+        <% if (pendingCheckers.length === 0) { %>
+            <div class="card shadow-sm">
+                <div class="card-body text-center py-5">
+                    <div class="mb-3 fs-1"><i class="fa-light fa-file"></i></div>
+                    <h5 class="fw-semibold">No Pending Requests</h5>
+                    <p class="text-muted mb-0">
+                        All checker applications have been reviewed.
+                    </p>
+                </div>
+            </div>
+        <% } else { %>
+
+        <div class="card shadow-sm">
+            <div class="card-body p-0">
+
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-dark">
+                            <tr class="text-center">
+                                <th style="min-width:240px;">Basic Info</th>
+                                <th style="min-width:180px;">License</th>
+                                <th style="min-width:140px;">ID Proof</th>
+                                <th style="min-width:240px;">Documents</th>
+                                <th style="min-width:260px;">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <% pendingCheckers.forEach(c => { %>
+                            <tr>
+                                <td>
+                                    <div class="fw-semibold"><%= c.username %></div>
+                                    <div class="text-muted small"><%= c.email %></div>
+                                    <div class="small">
+                                        <span class="fw-semibold">Contact:</span>
+                                        <span class="text-muted"><%= c.contact %></span>
+                                    </div>
+                                    <div class="small">
+                                        <span class="fw-semibold">Checker ID:</span>
+                                        <span class="text-muted"><%= c.checkerId || "—" %></span>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="small">
+                                        <span class="fw-semibold">Number</span>
+                                        <div class="text-muted"><%= c.licenseNumber %></div>
+                                    </div>
+                                    <div class="small mt-1">
+                                        <span class="fw-semibold">Expiry</span>
+                                        <div class="text-muted">
+                                            <%= new Date(c.licenseExpiry).toLocaleDateString() %>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td class="text-center">
+                                    <span class="badge bg-secondary px-3 py-2">
+                                        <%= c.documents.idProofType %>
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <% if (c.documents.documentFiles.length === 0) { %>
+                                        <span class="text-muted fst-italic">
+                                            No documents uploaded
+                                        </span>
+                                    <% } else { %>
+                                        <ul class="list-unstyled mb-0">
+                                            <% c.documents.documentFiles.forEach((file, i) => { %>
+                                                <li class="mb-1">
+                                                    <a
+                                                        href="/<%= file %>"
+                                                        target="_blank"
+                                                        class="text-decoration-none"
+                                                    >
+                                                        📄 Document <%= i + 1 %>
+                                                    </a>
+                                                </li>
+                                            <% }) %>
+                                        </ul>
+                                    <% } %>
+                                </td>
+
+                                <td>
+                                    <form
+                                        action="/admin/checkers/<%= c._id %>/approve"
+                                        method="POST"
+                                        class="mb-2"
+                                    >
+                                        <button class="btn btn-success btn-sm w-100">
+                                            Approve Checker
+                                        </button>
+                                    </form>
+
+                                    <form
+                                        action="/admin/checkers/<%= c._id %>/reject"
+                                        method="POST"
+                                    >
+                                        <input
+                                            type="text"
+                                            name="reason"
+                                            class="form-control form-control-sm mb-2"
+                                            placeholder="Rejection reason"
+                                            required
+                                        />
+                                        <button class="btn btn-danger btn-sm w-100">
+                                            Reject Checker
+                                        </button>
+                                    </form>
+                                </td>
+
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <% } %>
+
+    </div>
+
+</body>

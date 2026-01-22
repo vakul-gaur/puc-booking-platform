@@ -4,7 +4,7 @@ const Booking = require("../models/booking.js");
 const Checker = require("../models/checker.js");
 const passport = require("passport");
 const upload = require("../utils/multer");
-const { isCheckerApproved, validateChecker } = require("../middleware.js");
+const { validateChecker } = require("../middleware.js");
 
 router.get("/checkerlogin", (req, res) => {
     res.render("checkers/checkerlogin.ejs", { action: "login", hideNavbar: true, hideFooter: true} );
@@ -28,9 +28,9 @@ router.post( "/checkersignup", validateChecker,
                 if (err) return next(err);
                 req.flash(
                     "success",
-                    "Registration successful. Your account will be verified within 24–48 hours."
+                    "Registration successful. Your account will be verified within 24-48 hours."
                 );
-                res.redirect("/checkerlogin");
+                res.redirect("/checkerdash");
             });
         } catch (e) {
             req.flash("error", "Registration failed. Details already exist or input is invalid.");
@@ -45,18 +45,6 @@ router.post("/checkerlogin", passport.authenticate("checker-local", {
     }),
     async (req, res) => {
         const checker = req.user;
-
-        if (checker.authorizationStatus !== "approved" || !checker.isActive) {
-            req.logout(() => {
-                req.flash(
-                    "error",
-                    "Your account is under verification. Admin approval usually takes 24–48 hours."
-                );
-                return res.redirect("/checkerlogin");
-            });
-            return;
-        }
-
         checker.lastLogin = new Date();
         await checker.save();
 
@@ -81,7 +69,6 @@ router.get("/checkerdash", async (req, res, next) => {
         next(err);
     }
 });
-
 
 router.get("/logout", (req, res, next) => {
     req.logout(err => {

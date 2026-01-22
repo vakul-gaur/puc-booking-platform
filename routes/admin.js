@@ -2,9 +2,7 @@ const express = require("express");
 const router = express.Router();
 const ExpressError = require("../utils/ExpressError.js");
 const passport = require("passport");
-const { saveRedirectUrl} = require("../middleware.js");
-const { isAdmin } = require("../middleware");
-const Admin = require("../models/admin.js");
+const { saveRedirectUrl, isAdmin} = require("../middleware.js");
 const User = require("../models/user.js");
 const Booking = require("../models/booking.js");
 const Checker = require("../models/checker.js");
@@ -46,7 +44,7 @@ router.get("/admin/checkers", isAdmin, async (req, res, next) => {
             authorizationStatus: "pending"
         });
 
-        res.render("admin/checkers.ejs", { pendingCheckers });
+        res.render("admin/checkers.ejs", { pendingCheckers, hideNavbar: false, hideFooter: true });
     } catch (err) {
         next(err);
     }

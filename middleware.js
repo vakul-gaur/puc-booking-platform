@@ -50,23 +50,3 @@ module.exports.isLoggedIn = (req, res, next) => {
     }
     next();
 };
-
-module.exports.isCheckerApproved = (req, res, next) => {
-    if (!req.isAuthenticated()) {
-        req.flash("error", "Please log in first.");
-        return res.redirect("/checker/login");
-    }
-
-    if (
-        req.user.authorizationStatus !== "approved" ||
-        !req.user.isActive
-    ) {
-        req.flash(
-            "error",
-            "Your account is still under verification."
-        );
-        return res.redirect("/checker/login");
-    }
-
-    next();
-};
