@@ -3,10 +3,11 @@
 <body>
     <div class="dashboard-container">
 
+        <!-- Welcome Section -->
         <div class="welcome-section">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    <h2><i class="fas fa-user-shield me-2"></i>Welcome, <%= checker.username %> </h2>
+                    <h2><i class="fas fa-user-shield me-2"></i>Welcome, <%= checker.username %></h2>
                 </div>
                 <div class="col-md-4 text-md-end">
                     <span class="location-badge">
@@ -14,6 +15,8 @@
                     </span>
                 </div>
             </div>
+
+            <!-- Earnings Cards -->
             <div class="row mt-3">
                 <div class="col-md-6">
                     <div class="earnings-card">
@@ -23,7 +26,7 @@
                             </div>
                             <div class="ms-3">
                                 <h6 class="text-muted mb-1">Last 24 Hours Earnings</h6>
-                                <h4 class="mb-0"> ₹ </h4>
+                                <h4 class="mb-0">₹ <%= earnings.last24Hours %></h4>
                             </div>
                         </div>
                     </div>
@@ -36,7 +39,7 @@
                             </div>
                             <div class="ms-3">
                                 <h6 class="text-muted mb-1">Monthly Earnings</h6>
-                                <h4 class="mb-0"> ₹ </h4>
+                                <h4 class="mb-0">₹ <%= earnings.monthly %></h4>
                             </div>
                         </div>
                     </div>
@@ -44,8 +47,9 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-            <p> <strong>License Number:</strong> <%= checker.licenseNumber %> </p>
+        <!-- Checker Info -->
+        <div class="col-md-6 mt-4">
+            <p><strong>License Number:</strong> <%= checker.licenseNumber %></p>
             <p>
                 <strong>Status:</strong>
                 <% if (checker.authorizationStatus === "approved") { %>
@@ -54,18 +58,16 @@
                     <span class="badge bg-warning text-dark">Pending</span>
                 <% } else if (checker.authorizationStatus === "rejected") { %>
                     <span class="badge bg-danger text-light">Rejected</span>
-                     <p> <strong>Rejection Reason:</strong> <%= checker.rejectionReason %> </p>
-                <% } else { %>
-                    <span class="badge bg-danger">Rejected</span>
+                    <p><strong>Rejection Reason:</strong> <%= checker.rejectionReason %></p>
                 <% } %>
             </p>
         </div>
 
-            <div class="card active-booking-card mb-4">
+        <!-- Active Booking -->
+        <% if (activeBooking) { %>
+            <div class="card active-booking-card mb-4 mt-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <div>
-                        <i class="fas fa-clock me-2"></i>Current Active Booking
-                    </div>
+                    <div><i class="fas fa-clock me-2"></i>Current Active Booking</div>
                     <span class="badge bg-success">In Progress</span>
                 </div>
                 <div class="card-body">
@@ -75,168 +77,120 @@
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <h6 class="text-muted">Booking ID</h6>
-                                        <p class="fw-bold">#
-                                           
-                                        </p>
+                                        <p class="fw-bold">#<%= activeBooking.id %></p>
                                     </div>
                                     <div class="col-md-6">
                                         <h6 class="text-muted">Vehicle Number</h6>
-                                        <p class="fw-bold">
-                                            
-                                        </p>
+                                        <p class="fw-bold"><%= activeBooking.vehicleNumber %></p>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <h6 class="text-muted">Customer Contact</h6>
-                                        <p class="contact-badge">
-                                            <i class="fas fa-phone me-2"></i>
-                                        
-                                        </p>
+                                        <p class="contact-badge"><i class="fas fa-phone me-2"></i><%= activeBooking.userPhone %></p>
                                     </div>
                                     <div class="col-md-6">
                                         <h6 class="text-muted">Location</h6>
-                                        <p class="location-badge">
-                                            <i class="fas fa-map-marker-alt me-2"></i>
-                                           
-                                        </p>
+                                        <p class="location-badge"><i class="fas fa-map-marker-alt me-2"></i><%= activeBooking.address %></p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <h6 class="text-muted">Vehicle Type</h6>
-                                        <p class="fw-bold">
-                                            <i class="fas fa-car me-2"></i>
-                                      
-                                        </p>
+                                        <p class="fw-bold"><i class="fas fa-car me-2"></i><%= activeBooking.vehicleModel %></p>
                                     </div>
                                     <div class="col-md-6">
                                         <h6 class="text-muted">Price</h6>
-                                        <p class="fw-bold">
-                                        
-                                        </p>
+                                        <p class="fw-bold">₹ <%= activeBooking.price %></p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="booking-actions">
-                                <form method="post" action="complete_booking.php" class="d-inline me-2">
-                                    <input type="hidden" name="booking_id">
+
+                            <div class="booking-actions mt-3">
+                                <form method="post" action="/complete_booking" class="d-inline me-2">
+                                    <input type="hidden" name="booking_id" value="<%= activeBooking.id %>">
                                     <div class="mb-3">
                                         <label class="form-label">Update Payment Status</label>
                                         <select name="payment_status" class="form-select mb-3" required>
-                                            <option value="paid">Payment Received</option>
-                                            <option value="pending">Payment Pending</option>
+                                            <option value="paid" <%= activeBooking.paymentStatus === 'paid' ? 'selected' : '' %>>Payment Received</option>
+                                            <option value="pending" <%= activeBooking.paymentStatus === 'pending' ? 'selected' : '' %>>Payment Pending</option>
                                         </select>
                                     </div>
                                     <div class="d-flex gap-2">
-                                        <button type="submit" class="btn btn-success">
-                                            <i class="fas fa-check-circle me-2"></i>Complete PUC Check
-                                        </button>
-                                        <a href="tel:<?php echo $active_booking['user_phone']; ?>" class="btn btn-outline-secondary">
-                                            <i class="fas fa-phone me-2"></i>Call Customer
-                                        </a>
-                                        <!-- <a href="https://www.google.com/maps/search/?api=1&query=<?php echo urlencode($active_booking['address']); ?>"  -->
-                                           target="_blank" class="btn btn-outline-primary">
+                                        <button type="submit" class="btn btn-success"><i class="fas fa-check-circle me-2"></i>Complete PUC Check</button>
+                                        <a href="tel:<%= activeBooking.userPhone %>" class="btn btn-outline-secondary"><i class="fas fa-phone me-2"></i>Call Customer</a>
+                                        <a href="https://www.google.com/maps/search/?api=1&query=<%= encodeURIComponent(activeBooking.address) %>" target="_blank" class="btn btn-outline-primary">
                                             <i class="fas fa-directions me-2"></i>Get Directions
                                         </a>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                        </div>
                     </div>
                 </div>
             </div>
+        <% } %>
 
-        <div class="card">
+        <!-- Pending Bookings -->
+        <div class="card mb-4">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <div>
-                    <i class="fas fa-clipboard-list me-2"></i>Pending Bookings
-                </div>
-                <button class="btn btn-light btn-sm" onclick="window.location.reload()">
-                    <i class="fas fa-sync-alt me-2"></i>Refresh
-                </button>
+                <div><i class="fas fa-clipboard-list me-2"></i>Pending Bookings</div>
+                <button class="btn btn-light btn-sm" onclick="window.location.reload()"><i class="fas fa-sync-alt me-2"></i>Refresh</button>
             </div>
             <div class="card-body">
-                
+                <% if (pendingBookings && pendingBookings.length > 0) { %>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
-        <tr>
-            <th>Booking ID</th>
-            <th>Vehicle Number</th>
-            <th>Vehicle Model</th>
-            <th>Booking Date</th>
-            <th>Price</th>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Vehicle Number</th>
+                                    <th>Vehicle Model</th>
+                                    <th>Booking Date</th>
+                                    <th>Price</th>
                                     <th>Payment Status</th>
-            <th>User Location</th>
-            <th>Actions</th>
-        </tr>
+                                    <th>User Location</th>
+                                    <th>Actions</th>
+                                </tr>
                             </thead>
                             <tbody>
-                                
-            <tr>
-                                        <td>#
-                                          
-                                        </td>
-                <td>
-            
-                </td>
+                                <% pendingBookings.forEach(booking => { %>
+                                    <tr>
+                                        <td>#<%= booking.id %></td>
+                                        <td><%= booking.vehicleNumber %></td>
+                                        <td><i class="fas fa-car me-2"></i> <%= booking.vehicleModel %>-Wheeler</td>
+                                        <td><i class="far fa-calendar-alt me-2"></i> <%= booking.createdAtFormatted %></td>
+                                        <td>₹ <%= booking.price %></td>
+                                        <td><span class="badge bg-warning"><i class="fas fa-clock me-1"></i>Pending</span></td>
+                                        <td><span class="location-badge"><i class="fas fa-map-marker-alt me-1"></i><%= booking.address %></span></td>
                                         <td>
-                                            <i class="fas fa-car me-2"></i>
-                                            <!-- <?php echo $row['vehicle_model']; ?>-Wheeler -->
-                                        </td>
-                                        <td>
-                                            <i class="far fa-calendar-alt me-2"></i>
-                                            <!-- <?php echo date('d M Y, h:i A', strtotime($row['created_at'])); ?> -->
-                                        </td>
-                                        <td>
-                                            <span class="fw-bold">₹
-                                                <!-- <?php echo $row['price']; ?> -->
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span class="badge bg-warning">
-                                                <i class="fas fa-clock me-1"></i>Pending
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span class="location-badge">
-                                                <i class="fas fa-map-marker-alt me-1"></i>
-                                                <!-- <?php echo $row['address']; ?> -->
-                                            </span>
-                                        </td>
-                <td>
-                    <form method="post" action="accept_booking.php">
-                        <input type="hidden" name="booking_id" value="">
-                                                <button type="submit" name="action" value="accept" 
-                                                        class="btn btn-success btn-sm action-btn">
+                                            <form method="post" action="/accept_booking">
+                                                <input type="hidden" name="booking_id" value="<%= booking.id %>">
+                                                <button type="submit" name="action" value="accept" class="btn btn-success btn-sm action-btn">
                                                     <i class="fas fa-check me-2"></i>Accept
                                                 </button>
-                    </form>
-                </td>
-            </tr>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <% }) %>
                             </tbody>
-    </table>
+                        </table>
                     </div>
-                <!-- <?php elseif ($has_active_booking): ?> -->
+                <% } else if (activeBooking) { %>
                     <div class="text-center py-5">
                         <i class="fas fa-tasks fa-3x text-warning mb-3"></i>
                         <h5 class="text-muted">Complete Your Active Booking First</h5>
                         <p class="text-muted mb-0">You can accept new bookings once you've completed your current booking.</p>
                     </div>
-<!-- <?php else: ?> -->
+                <% } else { %>
                     <div class="text-center py-5">
                         <i class="fas fa-clipboard-check fa-3x text-muted mb-3"></i>
                         <h5 class="text-muted">No Pending Bookings</h5>
                         <p class="text-muted mb-0">You're all caught up! Check back later for new bookings.</p>
                     </div>
-<!-- <?php endif; ?> -->
+                <% } %>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html> 

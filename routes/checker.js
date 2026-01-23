@@ -3,19 +3,20 @@ const router = express.Router();
 const Booking = require("../models/booking.js");
 const Checker = require("../models/checker.js");
 const passport = require("passport");
-const upload = require("../utils/multer");
-const { validateChecker } = require("../middleware.js");
+const { validateChecker, isCheckerLoggedIn } = require("../middleware.js");
+const multer = require("multer");
+const {storage} = require("../cloudConfig.js");
+const upload = multer({ storage })
 
 router.get("/checkerlogin", (req, res) => {
     res.render("checkers/checkerlogin.ejs", { action: "login", hideNavbar: true, hideFooter: true} );
 });
 
-router.post( "/checkersignup", validateChecker, 
-    upload.array("documents"),
+router.post( "/checkersignup", validateChecker, upload.single("documents"),
     async (req, res, next) => {
         try {
             const { username, email, contact, password, licenseNumber, licenseExpiry, idProofType } = req.body;
-            const files = req.files ? req.files.map(f => f.path) : [];
+            const files = req.file ? [req.file.path] : [];
 
             const checker = new Checker({ username, email, contact, licenseNumber, licenseExpiry, 
                 checkerId: `CHK-${Date.now()}`,
@@ -52,7 +53,7 @@ router.post("/checkerlogin", passport.authenticate("checker-local", {
     }
 );
 
-router.get("/checkerdash", async (req, res, next) => {
+router.get("/checkerdash", isCheckerLoggedIn, async (req, res, next) => {
     try {
         const checkerId = req.user._id;
 
@@ -64,7 +65,7 @@ router.get("/checkerdash", async (req, res, next) => {
         const completedBookings = bookings.filter(b => b.status === "Completed").length;
         const pendingBookings = bookings.filter(b => b.status !== "Completed").length;
 
-        res.render("checkers/checkerdash.ejs", { checker: req.user, bookings, totalAssigned, completedBookings, pendingBookings, hideNavbar: false, hideFooter: false });
+        res.render("checkers/checkerdash.ejs", { checker: req.user, bookings, totalAssigned, completedBookings, pendingBookings, hideNavbar: false, hideFooter: true });
     } catch (err) {
         next(err);
     }

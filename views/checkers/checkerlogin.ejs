@@ -42,7 +42,7 @@
         <div class="credentials-panel signup">
     <h2 class="slide-element">Register</h2>
 
-    <form action="/checkersignup" method="POST" enctype="multipart/form-data" novalidate class="needs-validation">
+    <form action="/checkersignup" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
 
     <div class="signup-grid">
         <div class="field-wrapper slide-element">
@@ -112,7 +112,7 @@
         </div>
 
         <div class="field-wrapper slide-element">
-            <input type="file" name="documents" multiple required>
+            <input type="file" name="documents" required>
             <div class="invalid-feedback">
                 Document is required.
             </div>
