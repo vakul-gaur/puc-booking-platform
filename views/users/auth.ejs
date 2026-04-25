@@ -4,25 +4,23 @@
     <div class="auth-wrapper" data-action="<%= typeof action !== 'undefined' ? action : 'login' %>">
         <div class="background-shape"></div>
         <div class="secondary-shape"></div>
+
         <div class="credentials-panel signin">
             <h2 class="slide-element">Login</h2>
             <form action="/login" method="POST" novalidate class="needs-validation">
+
                 <div class="field-wrapper slide-element">
-                    <input type="text" name= "username" required>
-                    <label for="">Full Name</label>
+                    <input type="text" name="username" required>
+                    <label>Full Name</label>
                     <i class="fa-solid fa-user"></i>
-                    <div class="invalid-feedback">
-                        Username is required.
-                    </div>
+                    <div class="invalid-feedback">Username is required.</div>
                 </div>
 
                 <div class="field-wrapper slide-element">
                     <input type="password" name="password" required>
-                    <label for="">Password</label>
+                    <label>Password</label>
                     <i class="fa-solid fa-lock"></i>
-                    <div class="invalid-feedback">
-                        Password is required.
-                    </div>
+                    <div class="invalid-feedback">Password is required.</div>
                 </div>
 
                 <div class="field-wrapper slide-element">
@@ -30,7 +28,7 @@
                 </div>
 
                 <div class="switch-link slide-element">
-                    <p>Don't have an account? <br> <a href="#" class="register-trigger">Sign Up</a></p>
+                    <p>Don't have an account? <br><a href="#" class="register-trigger">Sign Up</a></p>
                 </div>
             </form>
         </div>
@@ -41,49 +39,79 @@
 
         <div class="credentials-panel signup">
             <h2 class="slide-element">Register</h2>
-            <form action="/signup" method="POST" >
-                 <div class="field-wrapper slide-element">
-                    <input type="text" name= "username" required>
-                    <label for="">Full Name</label>
+
+            <% if (typeof messages !== 'undefined') { %>
+                <% if (messages.success && messages.success.length > 0) { %>
+                    <div class="flash-box flash-success">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <%= messages.success[0] %>
+                    </div>
+                <% } %>
+                <% if (messages.error && messages.error.length > 0) { %>
+                    <div class="flash-box flash-error">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        <%= messages.error[0] %>
+                    </div>
+                <% } %>
+            <% } %>
+
+            <form action="/signup" method="POST" id="signupForm">
+
+                <div class="field-wrapper slide-element">
+                    <input type="text" name="username" id="reg-username" required>
+                    <label>Full Name</label>
                     <i class="fa-solid fa-user"></i>
-                    <div class="invalid-feedback">
-                        Username is required.
-                    </div>
                 </div>
 
                 <div class="field-wrapper slide-element">
-                    <input type="text" name="contact" required>
-                    <label for="">Contact</label>
+                    <input type="text" name="contact" id="reg-contact" required maxlength="10">
+                    <label>Contact (10-digit)</label>
                     <i class="fa-solid fa-phone"></i>
-                    <div class="invalid-feedback">
-                        Contact Number is required.
-                    </div>
                 </div>
 
                 <div class="field-wrapper slide-element">
-                    <input type="email" name="email" required> 
-                    <label for="">Email</label>
+                    <button type="button" id="sendOtpBtn" class="submit-button otp-btn">
+                        Send OTP
+                    </button>
+                </div>
+
+                <div id="otpToast" class="otp-toast" style="display:none;">
+                    <span id="otpToastMsg"></span>
+                </div>
+
+                <div class="field-wrapper slide-element" id="otpSection" style="display:none;">
+                    <input type="text" id="otpInput" maxlength="6" placeholder=" ">
+                    <label>Enter OTP</label>
+                    <i class="fa-solid fa-key"></i>
+                </div>
+
+                <div class="field-wrapper slide-element" id="verifyOtpSection" style="display:none;">
+                    <button type="button" id="verifyOtpBtn" class="submit-button verify-btn">
+                        Verify OTP
+                    </button>
+                </div>
+
+                <div class="field-wrapper slide-element">
+                    <input type="email" name="email" required>
+                    <label>Email</label>
                     <i class="fa-solid fa-envelope"></i>
-                    <div class="invalid-feedback">
-                        Email is required.
-                    </div>
                 </div>
 
                 <div class="field-wrapper slide-element">
                     <input type="password" name="password" required>
-                    <label for="">Password</label>
-                    <div class="invalid-feedback">
-                        Password is required.
-                    </div>
+                    <label>Password</label>
                     <i class="fa-solid fa-lock"></i>
                 </div>
 
                 <div class="field-wrapper slide-element">
-                    <button class="submit-button" type="submit">Register</button>
+                    <button class="submit-button" type="submit" id="registerBtn"
+                        disabled style="opacity:0.5; cursor:not-allowed;">
+                        Register
+                    </button>
                 </div>
 
                 <div class="switch-link slide-element">
-                    <p>Already have an account? <br> <a href="#" class="login-trigger">Sign In</a></p>
+                    <p>Already have an account? <br><a href="#" class="login-trigger">Sign In</a></p>
                 </div>
             </form>
         </div>
