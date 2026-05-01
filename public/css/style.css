@@ -185,6 +185,22 @@ credentials-panel.signin {
     transition-delay: 0.5s;
 }
 
+.credentials-panel.signup .slide-element:nth-child(7) {
+    transition-delay: 0.6s;
+}
+
+.credentials-panel.signup .slide-element:nth-child(8) {
+    transition-delay: 0.7s;
+}
+
+.credentials-panel.signup .slide-element:nth-child(9) {
+    transition-delay: 0.8s;
+}
+
+.credentials-panel.signup .slide-element:nth-child(10) {
+    transition-delay: 0.9s;
+}
+
 .auth-wrapper.toggled .credentials-panel.signup .slide-element {
     transform: translateX(0%);
     opacity: 1;
@@ -204,7 +220,7 @@ credentials-panel.signin {
 }
 
 .auth-wrapper.toggled .credentials-panel.signup .slide-element:nth-child(4) {
-    transition-delay: 1.9s;
+    transition-delay: 2.0s;
 }
 
 .auth-wrapper.toggled .credentials-panel.signup .slide-element:nth-child(5) {
@@ -213,6 +229,22 @@ credentials-panel.signin {
 
 .auth-wrapper.toggled .credentials-panel.signup .slide-element:nth-child(6) {
     transition-delay: 2.1s;
+}
+
+.auth-wrapper.toggled .credentials-panel.signup .slide-element:nth-child(7) {
+    transition-delay: 2.15s;
+}
+
+.auth-wrapper.toggled .credentials-panel.signup .slide-element:nth-child(8) {
+    transition-delay: 2.2s;
+}
+
+.auth-wrapper.toggled .credentials-panel.signup .slide-element:nth-child(9) {
+    transition-delay: 2.25s;
+}
+
+.auth-wrapper.toggled .credentials-panel.signup .slide-element:nth-child(10) {
+    transition-delay: 2.3s;
 }
 
 .credentials-panel h2 {
@@ -253,6 +285,56 @@ credentials-panel.signin {
     font-size: 16px;
     color: #fff;
     transition: .5s;
+}
+
+
+
+.credentials-panel form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;   /* same spacing everywhere */
+}
+
+/* Remove extra margins if any */
+.credentials-panel .field-wrapper {
+    margin: 0;
+}
+
+#otpSection {
+    margin-top: 15px;
+}
+
+#email {
+    margin-top: 1.5rem;
+}
+
+
+
+.field-wrapper input {
+    width: 100%;
+    padding: 20px 35px 8px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255,255,255,0.25);
+    color: white;
+    outline: none;
+}
+
+.field-wrapper input::placeholder {
+    color: transparent;
+}
+
+.field-wrapper label {
+    position: absolute;
+    left: 0;
+    top: 22px;
+    transition: 0.3s ease;
+    pointer-events: none;
+}
+
+.field-wrapper input:focus + label,
+.field-wrapper input:not(:placeholder-shown) + label {
+    top: -2px;
 }
 
 .field-wrapper i {
