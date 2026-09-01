@@ -1,0 +1,68 @@
+.checker-wrapper {
+    max-width: 1040px;
+}
+
+.signup-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.span-full {
+    grid-column: span 2;
+}
+
+.field-wrapper select {
+    width: 100%;
+    padding: 13px 42px 13px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 14px;
+    font-size: 14px;
+    color: #0f172a;
+    background: #f8fafc;
+    outline: none;
+    appearance: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field-wrapper select:focus {
+    border-color: #22c55e;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.14);
+}
+
+.field-wrapper input[type="file"] {
+    padding: 10px 14px;
+    background: #f8fafc;
+    border: 1.5px dashed #cbd5e1;
+    cursor: pointer;
+}
+
+.flash-box {
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.flash-success {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #15803d;
+}
+
+.flash-error {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+}
+
+@media (max-width: 760px) {
+    .signup-grid {
+        grid-template-columns: 1fr;
+    }
+    .span-full {
+        grid-column: span 1;
+    }
+}
